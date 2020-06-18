@@ -1,0 +1,8 @@
+version 4.0
+
+#include "ZScript/Base/recoilbase.zsc"
+#include "ZScript/Base/gunbase.zsc"
+#include "ZScript/Weapons/magnum.zsc"
+
+// Constants
+const DIST_METER = 28.f;

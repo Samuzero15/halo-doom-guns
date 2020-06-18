@@ -88,6 +88,8 @@ Actor Halo_Magnum_Mag : Ammo { Inventory.MaxAmount 12 }
 Actor Halo_Magnum_Clip : Ammo replaces Clip 
 {
 	Inventory.MaxAmount 96 
+	Inventory.Amount 12
+	Inventory.PickupMessage "Picked up a Magnum Clip"
 	Inventory.Icon "CLIPA0"
 	States{
 		Spawn:

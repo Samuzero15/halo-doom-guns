@@ -19,4 +19,4 @@ call acs_comp "%folder%"
 
 cd "%folder%"
 
-call 7za a -y -tzip -mx=9 -mmt -x!.svn ..\%fileoutput% "%folder%"
+call 7za a -y -tzip -mx=9 -mmt -x!.svn ..\%fileoutput% ".\"

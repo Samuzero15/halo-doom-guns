@@ -21,7 +21,7 @@ call acs_comp "%folder%"
 
 cd "%folder%"
 
-call 7za a -y -tzip -mx=0 -mmt -x!.svn ..\%fileoutput% "%folder%"
+call 7za a -y -tzip -mx=0 -mmt -x!.svn ..\%fileoutput% ".\"
 
 rem cd "C:\Users\Samuzero15\Desktop\Cosas para doom\Samu Projects\Halo Guns\Zandronum"
 

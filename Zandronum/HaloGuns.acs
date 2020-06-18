@@ -1,0 +1,105 @@
+
+#include "zcommon.acs"
+
+Script "Halo_ReloadMagnum" (void)
+{
+	ReloadGun("Halo_Magnum_Mag", "Halo_Magnum_Clip");
+}
+
+Script "Halo_RelVal_Magnum" (void){
+	SetResultValue(CanIReloadGun("Halo_Magnum_Mag", "Halo_Magnum_Clip"));
+}
+
+function bool CanIReloadGun(str clipActor, str ammoSrcActor){
+	int clip = 		CheckInventory(clipActor);
+	int clipmax = 	GetAmmoCapacity(clipActor);
+	int ammo = 		CheckInventory(ammoSrcActor);
+	
+	return (clip < clipmax && ammo > 0);
+}
+
+function void ReloadGun(str clipActor, str ammoSrcActor){
+	int clip = CheckInventory(clipActor);
+	int ammo = CheckInventory(ammoSrcActor);
+	
+	int addToClip = GetAmmoCapacity(clipActor) - clip;
+	if(addToClip <= ammo){
+		TakeInventory(ammoSrcActor, addtoclip);
+		GiveInventory(clipActor, addtoclip);
+	}else{
+		TakeInventory(ammoSrcActor, ammo);
+		GiveInventory(clipActor, ammo);
+	}
+}
+
+#define UNIT_METER 16
+
+script 10000 (void)
+{
+	//int x1 = GetUserVariable(0, "user_x"), y1 = GetUserVariable(0, "user_y");
+	
+	int ProjTid = uniqueTid();
+	Thing_ChangeTID(0, projTid);
+	
+	setActivatorToTarget(projtid); // Player fired this bullet.
+	int dist = MUtoMeters(distance(ActivatorTid(), projtid));
+
+	setActivator(projtid);
+
+	int dmg_max = 145;
+	int dist_max = 123; // Meters.
+	int dist_min = 61;  // Meters.
+	int dmg_pcap = 40;
+	int dist_perc = 0.0;
+	
+	int dmg_loss = 0.0;
+	int dmg_lperc = 0.0;
+	
+	if(dist >= dist_max) dmg_loss = dmg_max;
+	else if(dist > dist_min)
+	{ 
+		int dist_damp = dist_max - dist_min;
+		int dist_sofar = dist - dist_min;
+		dist_perc = 1.0 * dist_sofar / dist_damp;
+		dmg_lperc = ((100 - dmg_pcap) * dist_perc);
+		dmg_loss = (ut_floor(dmg_max * ut_floor(dmg_lperc) / 100)) >> 16;
+		
+	}
+	
+	
+	Print(d:(dist), s:" Meters from hit. \n",
+		s:"dist_damp = ", d:dist_damp, s:"\n",
+		s:"dist_sofar = ", d:dist_sofar, s:"\n",
+		s:"dist_perc = ", f:dist_perc, 	s:"\n",
+		s:"dmg_loss = ", d:dmg_loss, 	s:"\n",
+		s:"dmg_lperc = ", f:dmg_lperc, 	s:"\n",
+		s:"dmg_loss = ", d:dmg_loss, 	s:"\n",
+		s:"Damage: ", d:145 - dmg_loss);
+		
+	SetResultvalue(145 - dmg_loss);
+}
+
+function int ut_floor(int x)
+{
+	return ((x) & 0xffff0000);
+}
+
+function int lerp(int a, int b, int alpha)
+{
+	return FixedMul(a, 1.0 - alpha) + FixedMul(b, alpha);
+}
+
+function int MUtoMeters(int a)
+{
+	return (a / UNIT_METER);
+}
+
+function int distance (int tid1, int tid2)
+{
+	int x, y, z, d;
+	x = GetActorX(tid1) - GetActorX(tid2) >> 16; // Convert fixed point to integer
+	y = GetActorY(tid1) - GetActorY(tid2) >> 16;
+	z = GetActorZ(tid1) - GetActorZ(tid2) >> 16;
+	d = sqrt( x*x + y*y + z*z );
+	return d;
+}

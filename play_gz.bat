@@ -1,8 +1,11 @@
 @echo off
 
 REM This compiles, quick-packs and plays the Zandronum version for the project 
+REM vv -- Modify this before you run this bat! -- vv
 set devPath=C:\Users\Samuzero15\Desktop\Cosas para doom\Samu Projects\Halo Guns
 set portPath=C:\Users\Samuzero15\Desktop\Cosas para doom\Programas para test\LZDoom_3.83a_x86
+REM ^^ -- Modify this before you run this bat! -- ^^
+
 set portExe=lzdoom.exe
 set fileoutput="HaloGuns_Dev.pk3"
 

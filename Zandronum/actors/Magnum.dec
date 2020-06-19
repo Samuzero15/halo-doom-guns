@@ -106,6 +106,7 @@ Actor Halo_Magnum_Bullet : FastProjectile
     Height 2
 	Health 1
     decal "Bulletchip"
+	renderstyle ADD
     PROJECTILE
       +BLOODSPLATTER
       +DONTSPLASH

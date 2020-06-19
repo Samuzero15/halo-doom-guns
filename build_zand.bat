@@ -3,14 +3,11 @@
 REM This compiles and packs the Zandronum version.
 REM Perfect to make standalone files.
 
-set devPath=C:\Users\Samuzero15\Desktop\Cosas para doom\Samu Projects\Halo Guns
-set portExe=zandronum.exe
 set fileoutput="HaloGuns_Zand.pk3"
 
-cd %devPath%
+cd %~dp0
 set PATH=%PATH%;%~dp0\Tools
-set WorkingCopyPath=%~dp0
-set folder=%devPath%\Zandronum
+set folder=%~dp0\Zandronum
 cls
 
 cd "%folder%"

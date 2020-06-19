@@ -2,17 +2,15 @@
 
 REM This compiles, quick-packs and plays the Zandronum version for the project 
 REM vv -- Modify this before you run this bat! -- vv
-set devPath=C:\Users\Samuzero15\Desktop\Cosas para doom\Samu Projects\Halo Guns
 set portPath=C:\Users\Samuzero15\Desktop\Cosas para doom\Programas para test\Zandro
 REM ^^ -- Modify this before you run this bat! -- ^^
 
 set portExe=zandronum.exe
 set fileoutput="HaloGuns_Dev.pk3"
 
-cd %devPath%
-set PATH=%PATH%;%~dp0\Tools
-set WorkingCopyPath=%~dp0
-set folder=%devPath%\Zandronum
+cd %~dp0
+set PATH=%PATH%;%~dp0\Tools;%portpath%
+set folder=%~dp0\Zandronum
 cls
 
 cd "%folder%"
@@ -23,13 +21,9 @@ cd "%folder%"
 
 call 7za a -y -tzip -mx=0 -mmt -x!.svn ..\%fileoutput% ".\"
 
-rem cd "C:\Users\Samuzero15\Desktop\Cosas para doom\Samu Projects\Halo Guns\Zandronum"
+cd %~dp0
 
-cd %portpath%
-
-move "%devPath%\%fileoutput%" "%portpath%"
-
-%portexe% %fileoutput%
+%portexe% -noautoload -iwad Doom2.wad -file %fileoutput%
 
 REM After that, delete it.
 del %fileoutput%

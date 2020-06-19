@@ -54,7 +54,7 @@ Actor Halo_Magnum : Weapon	{
 			TNT1 A 0 A_PlaySound("Halo/Weapons/Mag_MD6/Fire", CHAN_WEAPON)
 			TNT1 A 0 A_Light2
 			//TNT1 A 0 A_FireBullets(3.2, 3.2, -1, 145, "BulletPuff", FBF_NORANDOM)
-			TNT1 A 0 A_FireCustomMissile("Halo_Magnum_Bullet",frandom(-1.7, 1.7),0,0,0,0,frandom(-1.7, 1.7))
+			TNT1 A 0 A_FireCustomMissile("Halo_Magnum_Bullet",frandom(-3.4, 1.7),0,0,0,0,frandom(-3.4, 1.7))
 			TNT1 A 0 A_TakeInventory("Halo_Magnum_Mag", 1)
 			MAFI AB 1 BRIGHT
 			TNT1 A 0 A_Light0

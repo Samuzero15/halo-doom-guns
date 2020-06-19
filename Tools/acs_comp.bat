@@ -61,10 +61,8 @@ goto end
 :acserror
 
 echo Errors found in compiling ACS libraries. Aborting...
-REM Open's error text
+REM Open's error text, make sure to open by default with the notepad.exe
 error.txt
-echo Close this to skip the routine.
-pause
-goto end
+exit
 
 :end

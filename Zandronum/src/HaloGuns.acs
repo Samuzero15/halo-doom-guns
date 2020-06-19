@@ -13,6 +13,39 @@ Script "Halo_RelVal_Magnum" (void){
 	SetResultValue(CanIReloadGun("Halo_Magnum_Mag", "Halo_Magnum_Clip"));
 }
 
+Script "Halo_Magnum_Angle" (void) {
+	int angle = 1 + 5 * checkInventory("Halo_Magnum_Inacurrate") / 20;
+	//print(s:"Impression Area: ", d:angle, s:" Item Counter:", d:(checkInventory("Halo_Magnum_Inacurrate") / 20));
+	SetResultValue(angle);
+}
+
+Script "Halo_Magnum_Pitch" (void) {
+	int pitch = 1 + 5 * checkInventory("Halo_Magnum_Inacurrate") / 20;
+	//print(s:"Impression Area: ", d:pitch, s:" Item Counter:", d:(checkInventory("Halo_Magnum_Inacurrate") / 20));
+	SetResultValue(pitch);
+}
+
+Script "Halo_Reticles" Enter{
+	while(1){
+		if(CheckWeapon("Halo_Magnum")){
+			HUDSetPoint(320.0, 240.0);
+			HudSetScale(0.3 + (0.7 * checkInventory("Halo_Magnum_Inacurrate") / 20));
+			HUDDrawImage(5000, "HR_MAG");
+		}
+		else{
+			ClearHudMessage(5000);
+		}
+		delay(1);
+	}
+}
+
+Script "Halo_PassiveLoop" Enter{
+	while(1){
+		takeInventory("Halo_Magnum_Inacurrate", 1);
+		delay(3);
+	}
+}
+
 function bool CanIReloadGun(str clipActor, str ammoSrcActor){
 	int clip = 		CheckInventory(clipActor);
 	int clipmax = 	GetAmmoCapacity(clipActor);

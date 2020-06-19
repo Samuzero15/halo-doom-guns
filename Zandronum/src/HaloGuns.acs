@@ -1,5 +1,8 @@
 
 #include "zcommon.acs"
+#include "acsutils.ach"
+
+#define UNIT_METER 16
 
 Script "Halo_ReloadMagnum" (void)
 {
@@ -32,12 +35,8 @@ function void ReloadGun(str clipActor, str ammoSrcActor){
 	}
 }
 
-#define UNIT_METER 16
-
 script 10000 (void)
 {
-	//int x1 = GetUserVariable(0, "user_x"), y1 = GetUserVariable(0, "user_y");
-	
 	int ProjTid = uniqueTid();
 	Thing_ChangeTID(0, projTid);
 	
@@ -66,7 +65,7 @@ script 10000 (void)
 		
 	}
 	
-	
+	/*
 	Print(d:(dist), s:" Meters from hit. \n",
 		s:"dist_damp = ", d:dist_damp, s:"\n",
 		s:"dist_sofar = ", d:dist_sofar, s:"\n",
@@ -75,18 +74,8 @@ script 10000 (void)
 		s:"dmg_lperc = ", f:dmg_lperc, 	s:"\n",
 		s:"dmg_loss = ", d:dmg_loss, 	s:"\n",
 		s:"Damage: ", d:145 - dmg_loss);
-		
+		*/
 	SetResultvalue(145 - dmg_loss);
-}
-
-function int ut_floor(int x)
-{
-	return ((x) & 0xffff0000);
-}
-
-function int lerp(int a, int b, int alpha)
-{
-	return FixedMul(a, 1.0 - alpha) + FixedMul(b, alpha);
 }
 
 function int MUtoMeters(int a)

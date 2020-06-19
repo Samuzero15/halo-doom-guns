@@ -21,6 +21,7 @@ cd "%folder%"
 
 call 7za a -y -tzip -mx=0 -mmt -x!.svn ..\%fileoutput% ".\"
 
+
 cd %~dp0
 
 %portexe% -noautoload -iwad Doom2.wad -file %fileoutput%

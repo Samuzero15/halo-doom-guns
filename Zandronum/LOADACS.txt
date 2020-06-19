@@ -1,2 +1,1 @@
-// Generated automatically by build script at 23:11:09,34 on 18/06/2020, do not edit
 HaloGuns

@@ -2,7 +2,7 @@
 #include "zcommon.acs"
 #include "acsutils.ach"
 
-#define UNIT_METER 16
+#define UNIT_METER 8
 
 Script "Halo_ReloadMagnum" (void)
 {

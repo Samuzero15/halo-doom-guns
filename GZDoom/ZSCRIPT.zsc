@@ -1,8 +1,26 @@
 version 4.0
 
-#include "ZScript/Base/recoilbase.zsc"
-#include "ZScript/Base/gunbase.zsc"
+#include "pickup.cfg"
+
+
+// Essentials
+#include "ZScript/math.zsc"
+//#include "ZScript/PickupSystem/halopickup_events.zsc"
+//#include "ZScript/PickupSystem/weapbehavior.zsc"
+
+// UI
+
+#include "ZScript/SBS/halo_sbs_base.zsc"
+#include "ZScript/SBS/halo_sbs_3D.zsc"
+#include "ZScript/UI/overlay_ui.zsc"
+
+
+// Weapon base
+#include "ZScript/Weapons/Base/recoilbase.zsc"
+#include "ZScript/Weapons/Base/gunbase.zsc"
+#include "ZScript/Weapons/Base/projectilebase.zsc"
+
+// Weapons
 #include "ZScript/Weapons/magnum.zsc"
 
-// Constants
-const DIST_METER = 28.f;
+const UNIT_METER = 8.f;

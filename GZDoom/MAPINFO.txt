@@ -1,0 +1,4 @@
+GameInfo
+{
+	AddEventHandlers = "Halo_OverlayUI"
+}
